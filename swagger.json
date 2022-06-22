@@ -1,0 +1,323 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API REST",
+        "description": "Esta documentacion tiene como objetivo mostrar el funcionamiento del refreshToken y token para la autenticacion de los usuarios",
+        "termsOfService": "https://github.com/guillermouzner",
+        "contact": {
+            "email": "guillermouz16@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4000",
+            "description": "api de test"
+        }
+    ],
+    "paths": {
+        "/api/v1/auth/register": {
+            "post": {
+                "summary": "Registro de usuario",
+                "description": "Esta ruta sera responsable de crear un nuevo usuario",
+                "tags": [
+                    "User"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Register"
+                            },
+                            "examples": {
+                                "register": {
+                                    "value": {
+                                        "email": "guillermouz16@gmail.com",
+                                        "password": "123123",
+                                        "repassword": "123123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "Usuario creado"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "summary": "Login de usuario",
+                "description": "Esta ruta sera responsable de crear un nuevo usuario",
+                "tags": [
+                    "User"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Register"
+                            },
+                            "examples": {
+                                "Login": {
+                                    "value": {
+                                        "email": "guille@gmail.com",
+                                        "password": "123123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/refresh": {
+            "get": {
+                "summary": "Obtener token de seguridad",
+                "description": "Esta ruta valida que existe un refreshToken y nos devuelve un token valido",
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "get": {
+                "summary": "Logout de usuario",
+                "description": "Esta ruta desloguea al usuario y elimina refreshToken",
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/links": {
+            "get": {
+                "summary": "Obtener Todos los Links",
+                "description": "Esta ruta sera responsable de crear un nuevo usuario",
+                "tags": [
+                    "Link"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Link",
+                "description": "Esta ruta sera responsable de crear un nuevo usuario",
+                "tags": [
+                    "Link"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Link"
+                            },
+                            "examples": {
+                                "Link": {
+                                    "value": {
+                                        "longLink": "https://www.youtube.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/links/{nanoLink}": {
+            "get": {
+                "summary": "Link para compartir",
+                "description": "A travez de este endpoint el usuario puede copiar el link y obtener un link simplificado para poder compartir",
+                "tags": [
+                    "Link"
+                ],
+                "parameters": [
+                    {
+                        "name": "nanoLink",
+                        "in": "path",
+                        "description": "Agregar nanoLink",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/links/{id}": {
+            "patch": {
+                "summary": "Update Link",
+                "description": "Editar ruta guardada por otra",
+                "tags": [
+                    "Link"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del link",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Link"
+                            },
+                            "examples": {
+                                "Link": {
+                                    "value": {
+                                        "longLink": "https://www.github.com/guillermouzner"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Link",
+                "description": "Elimina un link de la base de datos, se le pasa un id como parametro",
+                "tags": [
+                    "Link"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agregar ID del link a eliminar",
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error de servidor"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Register": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "repassword": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Link": {
+                "type": "object",
+                "properties": {
+                    "userLink": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
