@@ -12,29 +12,6 @@ const swaggerDocs = require("./swagger.json");
 
 // swagger
 import swaggerUI from "swagger-ui-express";
-// import swaggerJsDoc from "swagger-jsdoc";
-
-// const __filename = fileURLToPath(import.meta.url);
-
-// const __dirname = path.dirname(__filename);
-
-// const pathname = path.join(__dirname, "./routes/*.js");
-
-// const swaggerSpec = {
-//     definition: {
-//         openapi: "3.0.0",
-//         info: {
-//             title: "Node MongoDB API-Rest",
-//             version: "1.0.0",
-//         },
-//         servers: [
-//             {
-//                 url: "http://localhost:4000",
-//             },
-//         ],
-//     },
-//     apis: [pathname],
-// };
 
 const app = express();
 

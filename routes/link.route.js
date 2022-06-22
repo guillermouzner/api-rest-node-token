@@ -14,14 +14,19 @@ import {
 
 const router = Router();
 
+// Obtener todos los links
 router.get("/", validateToken, getLinks);
 
+// Obtener un link
 router.get("/:nanoLink", getLink);
 
+// Crear link
 router.post("/", validateToken, bodyLinkValidator, createLink);
 
+// Eliminar link
 router.delete("/:id", validateToken, paramsLinkValidator, removeLink);
 
+// Editar link
 router.patch(
     "/:id",
     validateToken,
