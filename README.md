@@ -2,6 +2,11 @@
 
 - [Documentacion](https://pruebarestgu.herokuapp.com/api/v1/doc/)
 
+> Disclaimer: Esta documentacion tiene como objetivo mostrar el funcionamiento del refreshToken y token para la autenticacion de los usuarios,
+> es por eso que se obviaron varias validaciones.
+> La idea de la app con las validaciones correspondientes se puede ver en: https://github.com/guillermouzner/app-node
+ 
+
 - Api Rest creada con Node.js y Express que utiliza JWT para la autenticación y comunicación con el usuario y MongoDB como base de datos.
 Al crear un usuario y/o iniciar sesión se nos genera un token de validación que se almacena en memoria RAM y sirve para hacer peticiones a rutas protegidas y un refresh token que se guarda como cookie y servirá para validar que existe un token valido.
 Ambos tokens tienen tiempo de expiración.
